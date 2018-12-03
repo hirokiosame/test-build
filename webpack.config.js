@@ -40,10 +40,15 @@ module.exports = {
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
+	            default: false,
+	            common: false,
 				styles: {
 					name: 'styles',
-					// test: /\.css$/,
-					chunks: 'all',
+					test(file) {
+						return file.type.match(/css/);
+					},
+					chunks: 'initial',
+					minChunks: 1,
 					enforce: true,
 				},
 			},
